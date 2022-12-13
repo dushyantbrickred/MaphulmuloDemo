@@ -24,13 +24,12 @@ namespace SwagLabs_Framework.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             PageFactory.InitElements(driver, this);
         }
-        public void Type_Login_Values()
+        public void Type_Login_Values(string userName, string passWord)
         {
             IWebElement userName_txtBx = driver.FindElement(Constants.Constants.userName_txtBx);
             IWebElement passWord_txtBx = driver.FindElement(Constants.Constants.passWord_txtBx);
-            userName_txtBx.SendKeys("standard_user");
-            passWord_txtBx.SendKeys("secret_sauce");
-          
+            userName_txtBx.SendKeys(userName);
+            passWord_txtBx.SendKeys(passWord);
         }
 
         public bool Click_Login_Button()
@@ -38,7 +37,7 @@ namespace SwagLabs_Framework.Pages
             IWebElement sign_Btn = driver.FindElement(Constants.Constants.sign_Btn);
             wait.Until(b => sign_Btn.Enabled);
             sign_Btn.Click();
-            var exists = driver.FindElement(Constants.Constants.loginLogo).Displayed;
+            var exists = driver.FindElement(Constants.Constants.appLogo).Displayed;
             return exists;
         }
     }

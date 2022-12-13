@@ -31,13 +31,11 @@ namespace SwagLabs_Framework.TestScripts
             ProductsPage productsPage = new ProductsPage(driver);
             LoginPage login = new LoginPage(driver);
 
-            login.Type_Login_Values();
+            login.Type_Login_Values(Constants.Constants.userName, Constants.Constants.passWord);
             login.Click_Login_Button();
-
             productsPage.select_Drowdown_And_Click_LowToHigh();
-
-
-
+            productsPage.Add_Items_To_Cart();
+            Assert.IsTrue(productsPage.Assert_Cart_Has_Two_Items());
         }
 
         [TestCleanup]

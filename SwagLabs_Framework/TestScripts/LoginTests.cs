@@ -20,7 +20,6 @@ namespace SwagLabs_Framework.TestScripts
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(basePage.testUrl);
-
         }
 
         [Priority(1)]
@@ -28,8 +27,9 @@ namespace SwagLabs_Framework.TestScripts
         public void Assert_User_Can_Login()
         {
             LoginPage loginPage = new LoginPage(driver);
-            loginPage.Type_Login_Values();
+            loginPage.Type_Login_Values(Constants.Constants.userName, Constants.Constants.passWord);
             var logoExits = loginPage.Click_Login_Button();
+
             Assert.IsTrue(logoExits);
         }
 

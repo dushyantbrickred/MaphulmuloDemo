@@ -28,20 +28,28 @@ namespace SwagLabs_Framework.Pages
         {
             IWebElement sortDropdown = driver.FindElement(Constants.Constants.sortDropdown);
             sortDropdown.Click();
+
             IWebElement lowToHighOption = driver.FindElement(Constants.Constants.lowToHighOption);
             lowToHighOption.Click();
 
+        }
+
+        public void Add_Items_To_Cart()
+        {
             IList<IWebElement> findAddToCartBtns = driver.FindElements(Constants.Constants.addToCartBtns);
             findAddToCartBtns[0].Click();
             findAddToCartBtns[findAddToCartBtns.Count].Click();
-
             IWebElement clickCart = driver.FindElement(By.Id("shopping_cart_container"));
             clickCart.Click();
-
-
-
         }
 
+        public bool Assert_Cart_Has_Two_Items()
+        {
+            IList<IWebElement> cartItems = driver.FindElements(Constants.Constants.cartItem);
+            if (cartItems.Count > 2)
+                return true;
+            return false;
+        }
 
     }
 }
